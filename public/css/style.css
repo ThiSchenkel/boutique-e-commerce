@@ -1,0 +1,9 @@
+h1 {
+  margin: 5%;
+  color: black;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}

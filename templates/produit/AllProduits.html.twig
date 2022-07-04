@@ -1,12 +1,11 @@
 {% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Tous les produits{% endblock %}
 {% block content %}
 <div class="row mt-5 justify-content-center text-center">
-  <h1 class="text-success">Liste des produits </h1>
+  <h1 class="text-dark">Liste des produits </h1>
   <div class="container">
-    <br /><br />
     <div class="row">
       {% for produit in allProduits %}
-      <div class="col col-md-3 mt-3">
+      <div class="col col-md-3 mt-1">
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
@@ -17,7 +16,8 @@
             <h6>Stock : {{ produit.stock}}</h6>
             <h6 class='text-danger'>Prix : {{ produit.prix}}</h6>
             <p class="card-text">{{ produit.description | slice(0,150)}} ...</p>
-            <button class="btn btn-success"><a href="">Acheter</a></button>
+            <p><a href="{{ path("one_produit", {id:produit.id})}}">+ Détail</a></p>
+            <button class="btn btn-dark"><a href="">Acheter</a></button>
           </div>
         </div>
       </div>

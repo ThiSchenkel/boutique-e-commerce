@@ -5,3 +5,7 @@
 app_home:
   path: /
   controller: App\Controller\HomeController::index
+
+app_produit:
+  path: /produits
+  controller: App\Controller\ProduitController::allProduits

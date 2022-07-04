@@ -6,6 +6,7 @@
 
 <div class="container" style="width: 70%">
      <br /><br />
+     {{ (app.request.get('_route') == 'admin_ajout_produit') ? '<h1>Ajouter un produit</h1>' : '<h1>Modifier un produit</h1>'}}
   {{ form(formProduit) }}
   
 </div>

@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %} {% block title %} {{ parent() }} Détail{%
+endblock %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img width="60%" src="{{ asset('uploads/' ~ produit.photo) }}">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title my-5">{{ produit.titre }}</h4>
+                        <h6>Couleur : {{ produit.couleur}}</h6>
+                        <h6>Taille : {{ produit.taille}}</h6>
+                        <h6>Stock : {{ produit.stock}}</h6>
+                        <h6 class='text-danger'>Prix : {{ produit.prix}}</h6>
+                        <p class="card-text my-3">{{ produit.description}}</p>
+                        <button class="btn btn-dark"><a href="">Acheter</a></button>
+                        <p class="text-success p-3"><a href="{{ path("app_produit")}}"><em> ← Retour</em></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

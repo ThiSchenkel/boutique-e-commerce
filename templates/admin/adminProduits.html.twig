@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %} 
+
+{% block title %} admin Produits{% endblock %}
+
+{% block content %}
+<div class="row mt-5 justify-content-center text-center">
+  <h1 class="text-info ">Liste des fiches de Produits</h1>
+  <table class="table table-striped m-5">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Taille</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Date enregistrement</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for produit in adminProduits %}
+    <tr>
+      <th scope="row">{{ produit.id}}</th>
+      <td>{{ produit.titre}}</td>
+      <td>{{ produit.description | slice(0,50)}}...</td>
+      <td>{{ produit.couleur}}</td>
+      <td>{{ produit.taille}}</td>
+      <td><img width="15%" src="{{ asset('uploads/' ~ produit.photo) }}"></td>
+      <td>{{ produit.prix}}</td>
+      <td>{{ produit.stock}}</td>
+      <td>{{ produit.dateEnregistrement | date("d/m/Y")}}</td>
+      <td>  
+              <a href="{{ path("update_produit", {id:produit.id})}}" id="update"
+                ><i class="fas fa-edit mx-1 text-success"></i>
+              </a>
+              <a href="{{ path("delete_produit", {id:produit.id})}}"><i class="fas fa-trash mx-1 text-danger" onclick="return confirm(`Etes vous sûr de vouloir supprimer ce produit? `)"></i></a>
+          </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+{% endblock %}

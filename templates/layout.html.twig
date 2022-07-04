@@ -34,8 +34,8 @@
               Admin
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="{{ path("admin_app_produit")}}">Ajout Produit</a></li>
-              <li><a class="dropdown-item" href="">Liste des produits</a></li>
+              <li><a class="dropdown-item" href="{{ path("admin_ajout_produit")}}">Ajout Produit</a></li>
+              <li><a class="dropdown-item" href="{{ path("admin_app_produit")}}">Liste des produits</a></li>
             </ul>
           </div>
     </div>
@@ -48,6 +48,9 @@
      <p> {{message}} </p>
    </div>
  {% endfor %}
+
+ {% block content %}{% endblock %}
+
 </main>
 
 <footer class="fixed-bottom bg-light">
