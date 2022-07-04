@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %} 
+{% block title %}{{ parent()}} Formulaire {% endblock %} 
+
+
+{% block content %}
+
+<div class="container" style="width: 70%">
+     <br /><br />
+  {{ form(formProduit) }}
+  
+</div>
+
+{% endblock %}
