@@ -32,9 +32,9 @@ class ProduitController extends AbstractController
            /**
      * @Route("/one_produit/{id<\d+>}", name="one_produit")
      */
-    public function oneCar($id, ManagerRegistry $doctrine): Response
+    public function oneProduit($id, ProduitRepository $repo): Response
     {
-        $produit=$doctrine->getRepository(Produit::class)->find($id);
+        $produit=$repo->find($id);
         return $this->render('produit/oneProduit.html.twig', [
             'produit'=>$produit
         ]);

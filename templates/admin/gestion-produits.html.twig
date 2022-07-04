@@ -21,11 +21,11 @@
     </tr>
   </thead>
   <tbody>
-      {% for produit in adminProduits %}
+      {% for produit in produits %}
     <tr>
       <th scope="row">{{ produit.id}}</th>
       <td>{{ produit.titre}}</td>
-      <td>{{ produit.description | slice(0,50)}}...</td>
+      <td>{{ produit.description | slice(0,30)}}...</td>
       <td>{{ produit.couleur}}</td>
       <td>{{ produit.taille}}</td>
       <td><img width="15%" src="{{ asset('uploads/' ~ produit.photo) }}"></td>
@@ -33,6 +33,8 @@
       <td>{{ produit.stock}}</td>
       <td>{{ produit.dateEnregistrement | date("d/m/Y")}}</td>
       <td>  
+              <a href="{{ path("one_produit", {id:produit.id})}}"><i class="fas fa-eye mx-1 text-warning"></i>
+              </a>
               <a href="{{ path("update_produit", {id:produit.id})}}" id="update"
                 ><i class="fas fa-edit mx-1 text-success"></i>
               </a>

@@ -16,6 +16,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
+
+    
 class AdminController extends AbstractController
 {
     /**
@@ -52,14 +54,26 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/admin/produits", name="admin_app_produit")
+       /**
+     * @Route("/gestion-produits", name="admin_gestion_produit")
      */
-    public function adminProduits(ManagerRegistry $doctrine, Request $request): Response
+    public function adminProduits(ProduitRepository $repo): Response
     {
-        $adminProduits=$doctrine->getRepository(Produit::class)->findAll();
-        return $this->render('admin/adminProduits.html.twig', [
-            'adminProduits'=>$adminProduits
+        $produits=$repo->findAll();
+
+        return $this->render('admin/gestion-produits.html.twig', [
+            'produits'=>$produits
+        ]);
+    }
+
+           /**
+     * @Route("/one_produit/{id<\d+>}", name="one_produit")
+     */
+    public function oneProduit($id, ProduitRepository $repo): Response
+    {
+        $produit=$repo->find($id);
+        return $this->render('produit/oneProduit.html.twig', [
+            'produit'=>$produit
         ]);
     }
 
@@ -93,7 +107,7 @@ class AdminController extends AbstractController
 
         $this->addFlash('success', "Le produit a bien été mis à jour");
 
-        return $this->redirectToRoute("admin_app_produit");
+        return $this->redirectToRoute("admin_gestion_produit");
         }
 
         return $this->render('admin/formProduit.html.twig', [
@@ -111,7 +125,7 @@ class AdminController extends AbstractController
 
                 $this->addFlash('success', "La fiche a bien été supprimée");
 
-                return $this->redirectToRoute("admin_app_produit");
+                return $this->redirectToRoute("admin_gestion_produit");
     } 
 
 }
