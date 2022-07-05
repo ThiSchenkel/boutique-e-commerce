@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %} 
+{% block title %}{{ parent()}} Formulaire Catégorie {% endblock %} 
+
+
+{% block content %}
+
+<div class="container" style="width: 70%">
+     <br /><br />
+     <h1>Ajout d'une catégorie </h1>
+  {{ form(formCategorie) }}
+  
+</div>
+
+{% endblock %}

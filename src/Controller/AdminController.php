@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Produit;
+use App\Entity\Categorie;
 use App\Form\ProduitType;
+use App\Form\CategorieType;
 use App\Controller\AdminController;
 use App\Repository\ProduitRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +19,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-
-    
 class AdminController extends AbstractController
 {
     /**
@@ -67,44 +68,43 @@ class AdminController extends AbstractController
     }
 
            /**
-     * @Route("/one_produit/{id<\d+>}", name="one_produit")
+     * @Route("/admin/detail_produit/{id<\d+>}", name="admin_detail_produit")
      */
-    public function oneProduit($id, ProduitRepository $repo): Response
+    public function detailProduit($id, ProduitRepository $repo): Response
     {
         $produit=$repo->find($id);
-        return $this->render('produit/oneProduit.html.twig', [
+
+
+        return $this->render('admin/oneProduit.html.twig', [
             'produit'=>$produit
         ]);
+
+        
     }
 
     /**
      * @Route("/admin/update_produit/{id<\d+>}", name="update_produit")
      */
-    public function update(ManagerRegistry $doctrine, $id, Request $request) : Response
+    public function update($id, ProduitRepository $repo, Request $request, SluggerInterface $slugger) 
     {
-        $produit = $doctrine->getRepository(Produit::class)->find($id);
+        $produit = $repo->find($id);
         $form =$this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
-        $produit->setdateEnregistrement ( new DateTime("now"));
-            $photo = $form->get('photo')->getData();
-            if($produit->getPhoto()!= null){
-            $file = $form->get('photo')->getData();
-            $fileName= uniqid(). '-' .$file->guessExtension();
+            if($form->get('photo')->getData()){
+                $file = $form->get('photo')->getData();
+            $fileName = $slugger->slug($produit->getTitre()) . uniqid() . '.' . $file->guessExtension();
+
             try{
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
-            );
+                $file->move($this->getParameter('images_directory'), $fileName);
             }catch(FileException $e){
-                return new Response($e->getMessage());
             }
             $produit->setPhoto($fileName);
-        }
-        $manager=$doctrine->getManager();
-        $manager->persist($produit);
-        $manager->flush();
+            }
 
+            $repo->add($produit,1);
+            
         $this->addFlash('success', "Le produit a bien été mis à jour");
 
         return $this->redirectToRoute("admin_gestion_produit");
@@ -126,6 +126,26 @@ class AdminController extends AbstractController
                 $this->addFlash('success', "La fiche a bien été supprimée");
 
                 return $this->redirectToRoute("admin_gestion_produit");
+    } 
+
+    /**
+     * @Route("/categorie-ajout", name="admin_ajout_categorie")
+     */
+    public function ajoutCategorie(Request  $request, CategorieRepository $repo) : Response
+    {
+            $categorie = new Categorie();
+            $form = $this->createForm(CategorieType:: class, $categorie);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $repo->add($categorie, 1);
+                
+                $this->addFlash('success', "La catégorie a bien été ajoutée");
+                return $this->redirectToRoute('admin_gestion_produit');
+            }
+                return $this->render('admin/formCategorie.html.twig', [
+                'formCategorie'=>$form->createView(),
+        ]);
     } 
 
 }
