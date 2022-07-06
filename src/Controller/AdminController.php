@@ -26,6 +26,17 @@ class AdminController extends AbstractController
      */
     public function ajout(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
+
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -60,6 +71,16 @@ class AdminController extends AbstractController
      */
     public function adminProduits(ProduitRepository $repo): Response
     {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+
         $produits=$repo->findAll();
 
         return $this->render('admin/gestion-produits.html.twig', [
@@ -87,6 +108,16 @@ class AdminController extends AbstractController
      */
     public function update($id, ProduitRepository $repo, Request $request, SluggerInterface $slugger) 
     {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+
         $produit = $repo->find($id);
         $form =$this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -120,6 +151,16 @@ class AdminController extends AbstractController
      */
     public function delete($id, ProduitRepository $repo) : Response
     {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+
                 $produit = $repo->find($id);
                 $repo->remove($produit, 1); 
 
@@ -133,6 +174,16 @@ class AdminController extends AbstractController
      */
     public function ajoutCategorie(Request  $request, CategorieRepository $repo) : Response
     {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+        
             $categorie = new Categorie();
             $form = $this->createForm(CategorieType:: class, $categorie);
             $form->handleRequest($request);
