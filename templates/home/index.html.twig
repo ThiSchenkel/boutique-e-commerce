@@ -1,8 +1,9 @@
 {% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Accueil{%
 endblock %} {% block content %}
+
 <div class="row mt-5 justify-content-center text-center">
   <h1 class="text-dark">Bienvenue sur Boutique E-commerce!</h1>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       {% for produit in produit %}
       <div class="col col-md-3 mt-1">
@@ -18,7 +19,7 @@ endblock %} {% block content %}
             <h6>Couleur : {{ produit.couleur }}</h6>
             <h6>Taille : {{ produit.taille }}</h6>
             <h6>Stock : {{ produit.stock }}</h6>
-            <h6 class="text-danger">Prix : {{ produit.prix }}</h6>
+            <h6 class="text-danger">Prix : {{ produit.prix }} €</h6>
           </div>
         </div>
       </div>
@@ -26,4 +27,5 @@ endblock %} {% block content %}
     </div>
   </div>
 </div>
+
 {% endblock %}

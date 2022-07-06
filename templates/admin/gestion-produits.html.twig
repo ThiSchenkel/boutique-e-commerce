@@ -28,8 +28,8 @@
       <td>{{ produit.description | slice(0,30)}}...</td>
       <td>{{ produit.couleur}}</td>
       <td>{{ produit.taille}}</td>
-      <td><img width="15%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}  "></td>
-      <td>{{ produit.prix}}</td>
+      <td><img width="15%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}"></td>
+      <td>{{ produit.prix}}€</td>
       <td>{{ produit.stock}}</td>
       <td>{{ produit.dateEnregistrement | date("d/m/Y")}}</td>
       <td scope="row">  

@@ -13,7 +13,7 @@ endblock %} {% block content %}
                         <h6>Couleur : {{ produit.couleur}}</h6>
                         <h6>Taille : {{ produit.taille}}</h6>
                         <h6>Stock : {{ produit.stock}}</h6>
-                        <h6 class='text-danger'>Prix : {{ produit.prix}}</h6>
+                        <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
                         <p class="card-text my-3">{{ produit.description}}</p>
                         <button class="btn btn-dark"><a href="">Acheter</a></button>
                         <p class="text-success p-3"><a href="{{ path("app_produit")}}"><em> ← Retour</em></a></p>

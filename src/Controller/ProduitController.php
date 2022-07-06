@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +22,13 @@ class ProduitController extends AbstractController
     // /**
     //  * @Route("/produits", name="app_produit")
     //  */
-    public function allProduits(ProduitRepository $repo)
+    public function allProduits(ProduitRepository $repo,CategorieRepository $repoCat)
     {
-        $allProduits=$repo->findAll();
+        $produits=$repo->findAll();
+        $categories =$repoCat->findAll();
         return $this->render('produit/allProduits.html.twig', [
-            'allProduits'=>$allProduits
+            'produits'=>$produits,
+            'categories'=>$categories
         ]);
     }
 
@@ -37,6 +40,20 @@ class ProduitController extends AbstractController
         $produit=$repo->find($id);
         return $this->render('produit/show.html.twig', [
             'produit'=>$produit
+        ]);
+    }
+
+    /**
+     * @Route("/categorie-{id<\d+>}", name="produit_categorie")
+     */
+    public function categorieProduits($id, CategorieRepository $repo)
+    {
+        $categorie=$repo->find($id);
+        $categories= $repo->findAll();
+
+        return $this->render('produit/allProduits.html.twig', [
+            'produits'=>$categorie->getProduits(),
+            'categories'=>$categories
         ]);
     }
 

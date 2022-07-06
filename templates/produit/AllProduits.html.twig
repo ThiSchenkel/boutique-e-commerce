@@ -1,20 +1,32 @@
-{% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Tous les produits{% endblock %}
+{% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Nos sélections{% endblock %}
 {% block content %}
 <div class="row mt-5 justify-content-center text-center">
-  <h1 class="text-dark">Liste des produits </h1>
+  <h1 class="text-dark">Nos sélections </h1>
   <div class="container">
     <div class="row">
-      {% for produit in allProduits %}
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Catégories
+          </div>
+                <ul class="list-group list-group-flush">
+                {% for categorie in categories %}
+                <a class="text-decoration-none" href="{{ path("produit_categorie", {id:categorie.id})}}"  ><li class="list-group-item btn btn-dark text-center">{{categorie.nom}}</li></a> 
+              {% endfor %} 
+                </ul>
+      </div>
+  </div>
+      {% for produit in produits %}
       <div class="col col-md-3 mt-1">
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
               <img width="100%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}">
-            <h6>{{ produit.titre}}</h6>
+            <h6>{{ produit.categorie.nom}}</h6>
             <h6>Couleur : {{ produit.couleur}}</h6>
             <h6>Taille : {{ produit.taille}}</h6>
             <h6>Stock : {{ produit.stock}}</h6>
-            <h6 class='text-danger'>Prix : {{ produit.prix}}</h6>
+            <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
             <p class="card-text">{{ produit.description | slice(0,50)}} ...</p>
               <p><a href="{{ path("produit_show", {id:produit.id})}}">+ Détail</i></p>
               </a>
