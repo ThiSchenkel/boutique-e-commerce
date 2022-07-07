@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.video-home {
+  position: relative;
+}
+
 .card-horizontal {
   display: flex;
   flex: 1 1 auto;

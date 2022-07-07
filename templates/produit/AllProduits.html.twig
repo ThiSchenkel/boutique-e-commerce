@@ -21,16 +21,14 @@
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
-              <img width="100%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}">
-            <h6>{{ produit.categorie.nom}}</h6>
+              <img width="60%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}">
             <h6>Couleur : {{ produit.couleur}}</h6>
-            <h6>Taille : {{ produit.taille}}</h6>
-            <h6>Stock : {{ produit.stock}}</h6>
+            <h6>Taille : {{ produit.taille}} - Stock : {{ produit.stock}}</h6>
+
             <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
-            <p class="card-text">{{ produit.description | slice(0,50)}} ...</p>
-              <p><a href="{{ path("produit_show", {id:produit.id})}}">+ Détail</i></p>
-              </a>
-            <button class="btn btn-dark"><a href="">Acheter</a></button>
+            <p class="card-text">{{ produit.description | slice(0,50)}} ... <a href="{{ path("produit_show", {id:produit.id})}}"><i class="fas fa-circle-info text-dark"></i>
+              </a></p>
+            <a href=""><i class="fas fa-basket-shopping text-danger"></i></a>
           </div>
         </div>
       </div>

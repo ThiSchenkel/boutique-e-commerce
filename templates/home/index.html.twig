@@ -1,8 +1,16 @@
 {% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Accueil{%
 endblock %} {% block content %}
 
+<div class="card bg-transparent text-white">
+  <video width="100%" height="600" autoplay loop>
+    <source src="{{ asset('img/Girl34728.mp4') }}" />
+  </video>
+  <div class="card-img-overlay d-flex align-items-center flex-column mb-6">
+    <h1 class="card-title" style="padding-top: 30%">Welcome The Thi's Shop</h1>
+    <p class="card-text p-2">♥ Une sélection rien que pour vous ♥</p>
+  </div>
+</div>
 <div class="row mt-5 justify-content-center text-center">
-  <h1 class="text-dark">Bienvenue sur Boutique E-commerce!</h1>
   <div class="container-fluid">
     <div class="row">
       {% for produit in produit %}
@@ -10,11 +18,11 @@ endblock %} {% block content %}
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
-            <img
+            <a href="{{ path("produit_show", {id:produit.id})}}"><img
               width="100%"
               src="{{ asset('uploads/' ~ produit.photo) }}"
               alt="{{ produit.titre }}"
-            />
+            ></a>
             <h6>{{ produit.titre }}</h6>
             <h6>Couleur : {{ produit.couleur }}</h6>
             <h6>Taille : {{ produit.taille }}</h6>

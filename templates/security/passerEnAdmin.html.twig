@@ -1,0 +1,6 @@
+{% extends 'layout.html.twig' %} {% block title %}Passer en Admin{% endblock %}
+{% block content %}
+<h1>Passer en Admin l'user {{ user.name ~ ' ' ~user.prenom}}</h1>
+<h3>Veuillez saisir le code secret pour confirmer l'action :</h3>
+{{ form(formAdmin) }}
+{% endblock %}
