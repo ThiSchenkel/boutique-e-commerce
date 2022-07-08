@@ -140,11 +140,11 @@ block content %}
           </div>
 
           <button
-            class="btn btn-primary btn-block d-flex justify-content-center mt-3"
+            class="btn btn-dark btn-block d-flex justify-content-center mt-3"
             type="button"
           >
-            <span class="me-3 font-weight-bold">{{total}}€</span
-            ><span class="me-3"> Commander</span>
+             <a class="text-decoration-none" href="{{path('passer_commande')}}"><span class="me-3 font-weight-bold">{{total}}€</span
+            >  <span class="me-3"> Commander</span></a>
           </button>
         </div>
       </div>
