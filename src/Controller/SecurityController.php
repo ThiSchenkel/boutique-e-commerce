@@ -42,7 +42,7 @@ class SecurityController extends AbstractController
      */
     public function passerEnAdmin($id, UserRepository $repo, Request $request) : Response
     {
-        $secret = "123456";
+        $secret = "TropBien@cetAppli";
 
         $form = $this->createForm(AdminType::class);
         $form->handleRequest($request);
