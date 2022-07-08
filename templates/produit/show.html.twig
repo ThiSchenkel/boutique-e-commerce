@@ -16,7 +16,7 @@ endblock %} {% block content %}
                         <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
                         <p class="card-text my-3">{{ produit.description}}</p>
                         <a href="{{ path("app_produit")}}"><i class="fas fa-arrow-rotate-left text-dark "></i></a>
-                        <a href=""><i class="fas fa-basket-shopping text-danger"></i></a>
+                        <a href=" {{path("panier_add", {id: produit.id})}}  "><i class="fas fa-basket-shopping text-danger"></i></a>
                         
                     </div>
                 </div>

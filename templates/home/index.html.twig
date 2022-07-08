@@ -6,7 +6,7 @@ endblock %} {% block content %}
     <source src="{{ asset('img/Girl34728.mp4') }}" />
   </video>
   <div class="card-img-overlay d-flex align-items-center flex-column mb-6">
-    <h1 class="card-title" style="padding-top: 30%">Welcome The Thi's Shop</h1>
+    <h1 class="card-title text-light" style="padding-top: 30%">Welcome The Thi's Shop</h1>
     <p class="card-text p-2">♥ Une sélection rien que pour vous ♥</p>
   </div>
 </div>
@@ -18,11 +18,7 @@ endblock %} {% block content %}
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
-            <a href="{{ path("produit_show", {id:produit.id})}}"><img
-              width="100%"
-              src="{{ asset('uploads/' ~ produit.photo) }}"
-              alt="{{ produit.titre }}"
-            ></a>
+            <a href="{{ path("produit_show", {id:produit.id})}}"></a>
             <h6>{{ produit.titre }}</h6>
             <h6>Couleur : {{ produit.couleur }}</h6>
             <h6>Taille : {{ produit.taille }}</h6>

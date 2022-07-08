@@ -1,13 +1,12 @@
 {% extends 'layout.html.twig' %} {% block title %}{{ parent() }}Nos sélections{% endblock %}
 {% block content %}
 <div class="row mt-5 justify-content-center text-center">
-  <h1 class="text-dark">Nos sélections </h1>
+  <h1 class="text-center text-info" style="margin: 2%">Nos sélections </h1>
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card" style="width: 18rem;">
-          <div class="card-header">
-            Catégories
+          <div class="card-header"><a class="text-decoration-none" href="{{ path("app_produit")}}" class="text-body">Nos sélections</a>
           </div>
                 <ul class="list-group list-group-flush">
                 {% for categorie in categories %}
@@ -28,7 +27,7 @@
             <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
             <p class="card-text">{{ produit.description | slice(0,50)}} ... <a href="{{ path("produit_show", {id:produit.id})}}"><i class="fas fa-circle-info text-dark"></i>
               </a></p>
-            <a href=""><i class="fas fa-basket-shopping text-danger"></i></a>
+            <a href=" {{path("panier_add", {id: produit.id})}}  "><i class="fas fa-basket-shopping text-danger"></i></a>
           </div>
         </div>
       </div>

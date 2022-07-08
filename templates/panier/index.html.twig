@@ -1,0 +1,157 @@
+{% extends 'layout.html.twig' %} {% block title %}Votre panier{% endblock %} {%
+block content %}
+<section class="h-100 h-custom" style="background-color: #eee">
+  <div class="container mt-5 p-3 rounded cart">
+    <div class="row no-gutters">
+      <div class="col-md-8">
+        <div class="product-details ">
+          <div class="d-flex flex-row align-items-center">
+            <i class="fas fa-left-long me-2"></i
+            ><span class="me-3"><a href="{{ path("app_produit")}}" class="text-decoration-none text-dark">Continuer les achats</a></span>
+          </div>
+          <hr />
+          <h6 class="mb-0">Votre panier</h6>
+          <div class="d-flex justify-content-between">
+            <span></span>
+            <div class="d-flex flex-row align-items-center">
+              <span class="text-black-50 me-5">Prix unitaire</span>
+              <div class="price ml-2">
+                <span class="me-5">Prix total</span>
+              </div>
+            </div>
+          </div>
+
+          {% for data in dataPanier %}
+          <div
+            class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded"
+          >
+            <div class="d-flex ">
+              <img class="mx-3" width="15%" src="{{ asset('uploads/' ~ data.produit.photo) }}" alt="{{data.produit.titre}}">
+              <div class="ml-2">
+                <span class="font-weight-bold d-block">{{data.produit.titre}}</span
+                ><span class="spec"> Couleur : {{data.produit.couleur}}</span><br>
+                ><span class="spec"> Taille : {{data.produit.taille}}</span><br>
+                ><span class="spec"> Quantité : {{data.quantite}}</span>
+              </div>
+            </div>
+            
+            <div class="d-flex flex-row align-items-center">
+              <span class="d-block"></span
+              ><span class="d-block me-5 font-weight-bold">{{data.produit.prix }}€</span
+              ><span class="d-block me-5 font-weight-bold">{{data.produit.prix * data.quantite}}€</span
+              >
+              <a href="{{ path('panier_delete_produit', {id: data.produit.id}) }}"><i class="fas fa-trash ml-3 text-black-50"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="payment-info">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Règlement</span
+            ><img
+              class="rounded"
+              src=""
+              width="30"
+            />
+          </div>
+          <span class="type d-block mt-3 mb-1">Type de carte</span
+          ><label class="radio">
+            <input type="radio" name="card" value="payment" checked />
+            <span
+              ><img
+                width="30"
+                src="https://img.icons8.com/color/48/000000/mastercard.png"
+            /></span>
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="card" value="payment" />
+            <span
+              ><img
+                width="30"
+                src="https://img.icons8.com/officel/48/000000/visa.png"
+            /></span>
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="card" value="payment" />
+            <span
+              ><img
+                width="30"
+                src="https://img.icons8.com/ultraviolet/48/000000/amex.png"
+            /></span>
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="card" value="payment" />
+            <span
+              ><img
+                width="30"
+                src="https://img.icons8.com/officel/48/000000/paypal.png"
+            /></span>
+          </label>
+          <div>
+            <label class="credit-card-label">Nom du détenteur de la carte</label
+            ><input
+              type="text"
+              class="form-control credit-inputs"
+              placeholder="Name"
+            />
+          </div>
+          <div>
+            <label class="credit-card-label">Numéros de carte</label
+            ><input
+              type="text"
+              class="form-control credit-inputs"
+              placeholder="0000 0000 0000 0000"
+            />
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="credit-card-label">Date</label
+              ><input
+                type="text"
+                class="form-control credit-inputs"
+                placeholder="12/24"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="credit-card-label">CVV</label
+              ><input
+                type="text"
+                class="form-control credit-inputs"
+                placeholder="342"
+              />
+            </div>
+          </div>
+          <hr class="line" />
+          <div class="d-flex justify-content-between information">
+            <span>Sous Total</span><span>{{total}}€</span>
+          </div>
+          <div class="d-flex justify-content-between information">
+            <span>Frais d'envoi</span><span>offert</span>
+          </div>
+
+          <div class="d-flex justify-content-between information">
+            <span>Total(Incl. taxes)</span><span>{{total}}€</span>
+          </div>
+
+          <button
+            class="btn btn-primary btn-block d-flex justify-content-center mt-3"
+            type="button"
+          >
+            <span class="me-3 font-weight-bold">{{total}}€</span
+            ><span class="me-3"> Commander</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+
