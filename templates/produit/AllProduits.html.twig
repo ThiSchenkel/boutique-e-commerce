@@ -10,7 +10,9 @@
           </div>
                 <ul class="list-group list-group-flush">
                 {% for category in categories %}
-                <a class="text-decoration-none" href="{{ path("produit_categorie", {id:category.id})}}"  ><li class="list-group-item btn btn-dark text-center">{{category.nom}}</li></a> 
+                <li class="list-group-item btn btn-dark text-center"><a class="text-decoration-none" href="{{ path("produit_categorie", {id:category.id})}}"  >
+                  {{category.nom}}
+                </a></li> 
               {% endfor %} 
                 </ul>
       </div>
