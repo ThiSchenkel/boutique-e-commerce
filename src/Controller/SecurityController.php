@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
         if (!$user) {
             $this->addFlash("error", "Aucun user trouvé avec l'id : $id");
 
-            return redirecToRoute("app_home");
+            return redirectToRoute("app_home");
         }
 
         if ($form->isSubmitted()&& $form->isValid()) {
