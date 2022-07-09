@@ -22,13 +22,13 @@ class ProduitController extends AbstractController
     // /**
     //  * @Route("/produits", name="app_produit")
     //  */
-    public function allProduits(ProduitRepository $repo,CategorieRepository $repoCat)
+    public function allProduits(ProduitRepository $repo)
     {
         $produits=$repo->findAll();
-        $categories =$repoCat->findAll();
+        // $categories =$repoCat->findAll();
         return $this->render('produit/allproduits.html.twig', [
             'produits'=>$produits,
-            'categories'=>$categories
+            // 'categories'=>$categories
         ]);
     }
 

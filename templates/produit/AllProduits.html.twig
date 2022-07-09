@@ -1,43 +1,48 @@
 {% extends 'layout.html.twig' %} 
 
-{% block title %} Nos sélections{% endblock %}
+{% block title %} admin Produits{% endblock %}
 
 {% block content %}
 <div class="row mt-5 justify-content-center text-center">
-  <h1 class="text-center text-info" style="margin: 2%">Nos sélections </h1>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <div class="card-header"><a class="text-decoration-none" href="{{ path("app_produit")}}" class="text-body">Nos sélections</a>
-          </div>
-                <ul class="list-group list-group-flush">
-                {% for category in categories %}
-                <li class="list-group-item btn btn-dark text-center"><a class="text-decoration-none" href="{{ path("produit_categorie", {id:category.id})}}"  >
-                  {{category.nom}}
-                </a></li> 
-              {% endfor %} 
-                </ul>
-      </div>
-  </div>
+  <h1 class="text-info ">Liste des fiches de Produits</h1>
+  <table class="table table-striped m-5">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Taille</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Date enregistrement</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
       {% for produit in produits %}
-      <div class="col col-md-3 mt-1">
-        <div class="card" style="width: 100%">
-          <div class="card-body">
-            <h5 class="card-title">{{ produit.titre }}</h5>
-              <img width="60%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}">
-            <h6>Couleur : {{ produit.couleur}}</h6>
-            <h6>Taille : {{ produit.taille}} - Stock : {{ produit.stock}}</h6>
-
-            <h6 class='text-danger'>Prix : {{ produit.prix}}€</h6>
-            <p class="card-text">{{ produit.description | slice(0,50)}} ... <a href="{{ path("produit_show", {id:produit.id})}}"><i class="fas fa-circle-info text-dark"></i>
-              </a></p>
-            <a href=" {{path("panier_add", {id: produit.id})}}  "><i class="fas fa-basket-shopping text-danger"></i></a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
+    <tr>
+      <th scope="row">{{ produit.id}}</th>
+      <td>{{ produit.titre}}</td>
+      <td>{{ produit.description | slice(0,30)}}...</td>
+      <td>{{ produit.couleur}}</td>
+      <td>{{ produit.taille}}</td>
+      <td><img width="15%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}"></td>
+      <td>{{ produit.prix}}€</td>
+      <td>{{ produit.stock}}</td>
+      <td>{{ produit.dateEnregistrement | date("d/m/Y")}}</td>
+      <td scope="row">  
+              <a href="{{ path("admin_detail_produit", {id:produit.id})}}"><i class="fas fa-eye mx-1 text-warning"></i>
+              </a>
+              <a href="{{ path("update_produit", {id:produit.id})}}" id="update"
+                ><i class="fas fa-edit mx-1 text-success"></i>
+              </a>
+              <a href="{{ path("delete_produit", {id:produit.id})}}"><i class="fas fa-trash mx-1 text-danger" onclick="return confirm(`Etes vous sûr de vouloir supprimer ce produit? `)"></i></a>
+          </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
 </div>
 {% endblock %}
