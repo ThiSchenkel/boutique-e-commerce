@@ -18,8 +18,7 @@ endblock %} {% block content %}
         <div class="card" style="width: 100%">
           <div class="card-body">
             <h5 class="card-title">{{ produit.titre }}</h5>
-            <img width="60%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}">
-            <a href="{{ path("produit_show", {id:produit.id})}}"></a>
+            <a href="{{ path("produit_show", {id:produit.id})}}"><img width="60%" src="{{ asset('uploads/' ~ produit.photo) }}" alt="{{produit.titre}}"></a>
             <h6>{{ produit.titre }}</h6>
             <h6>Couleur : {{ produit.couleur }}</h6>
             <h6>Taille : {{ produit.taille }}</h6>

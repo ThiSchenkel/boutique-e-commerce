@@ -25,7 +25,7 @@ class ProduitController extends AbstractController
     public function allProduits(ProduitRepository $repo,CategorieRepository $repoCat)
     {
         $produits=$repo->findAll();
-        $categories =$repoCat->findAll();
+        // $categories =$repoCat->findAll();
         return $this->render('produit/allProduits.html.twig', [
             'produits'=>$produits,
             // 'categorie'=>$categories,
