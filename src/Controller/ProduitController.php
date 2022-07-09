@@ -26,9 +26,9 @@ class ProduitController extends AbstractController
     {
         $produits=$repo->findAll();
         $categories =$repoCat->findAll();
-        return $this->render('produit/allProduits.html.twig', [
+        return $this->render('produit/allproduits.html.twig', [
             'produits'=>$produits,
-            'categories'=>$categories,
+            'categories'=>$categories
         ]);
     }
 
@@ -51,7 +51,7 @@ class ProduitController extends AbstractController
         $categorie=$repo->find($id);
         $categories= $repo->findAll();
 
-        return $this->render('produit/allProduits.html.twig', [
+        return $this->render('produit/allproduits.html.twig', [
             'produits'=>$categorie->getProduits(),
             'categories'=>$categories
         ]);
