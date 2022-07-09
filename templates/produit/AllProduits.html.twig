@@ -9,8 +9,8 @@
           <div class="card-header"><a class="text-decoration-none" href="{{ path("app_produit")}}" class="text-body">Nos sélections</a>
           </div>
                 <ul class="list-group list-group-flush">
-                {% for categorie in categories %}
-                <a class="text-decoration-none" href="{{ path("produit_categorie", {id:categorie.id})}}"  ><li class="list-group-item btn btn-dark text-center">{{categorie.nom}}</li></a> 
+                {% for category in categories %}
+                <a class="text-decoration-none" href="{{ path("produit_categorie", {id:category.id})}}"  ><li class="list-group-item btn btn-dark text-center">{{category.nom}}</li></a> 
               {% endfor %} 
                 </ul>
       </div>

@@ -80,7 +80,7 @@ class PanierController extends AbstractController
         if (!empty($panier[$id])) {
             unset($panier[$id]);
         }else{
-            $this->addFlash("error", "Leproduit que vous essayez de retirer du panier n'existe pas!!!");
+            $this->addFlash("error", "Le produit que vous essayez de retirer du panier n'existe pas!!!");
 
             return $this->redirectToRoute("panier_show");
         }
