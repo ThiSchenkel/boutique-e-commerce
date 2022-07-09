@@ -28,7 +28,7 @@ class ProduitController extends AbstractController
         $categories =$repoCat->findAll();
         return $this->render('produit/allProduits.html.twig', [
             'produits'=>$produits,
-            'categorie'=>$categories
+            // 'categorie'=>$categories,
         ]);
     }
 
