@@ -8,13 +8,13 @@
         <div class="card" style="width: 18rem;">
           <div class="card-header"><a class="text-decoration-none" href="{{ path("app_produit")}}" class="text-body">Nos sélections</a>
           </div>
-                {# <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush">
                 {% for category in categories %}
                 <li class="list-group-item btn btn-dark text-center"><a class="text-decoration-none" href="{{ path("produit_categorie", {id:category.id})}}"  >
                   {{category.nom}}
                 </a></li> 
               {% endfor %} 
-                </ul> #}
+                </ul>
       </div>
   </div>
       {% for produit in produits %}

@@ -59,7 +59,7 @@ class AdminController extends AbstractController
 
              $this->addFlash('success', "Le produit a bien été ajouté");
 
-            return $this->redirectToRoute('app_produit');
+            return $this->redirectToRoute('admin_gestion_produit');
         }
         return $this->render('admin/formProduit.html.twig', [
             'formProduit'=>$form->createView()
